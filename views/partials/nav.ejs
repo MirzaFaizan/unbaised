@@ -1,0 +1,25 @@
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">
+    <img src="/images/icon.png" class="d-inline-block align-top" style="width:100px">
+  </a>
+  <div id="user-info">
+    <% if(user) { %>
+    <!-- Example single danger button -->
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false"><span id="user"><%= user %></span></button>
+      <div class="dropdown-menu dropdown-menu-right">
+        <!-- <h6 class="dropdown-header">Karma: <span id="karma"><%=karma%></span></h6> -->
+
+        <a class="dropdown-item" href="/u/<%=user%>">Profile</a>
+        <a class="dropdown-item" href="/settings">Settings</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="/logout">Logout</a>
+      </div>
+    </div>
+    <% } else { %>
+    <a class="btn btn-success" href="/login" id="user-settings">Sign in</a>
+    <% } %>
+  </div>
+
+</nav>

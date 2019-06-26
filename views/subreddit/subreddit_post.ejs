@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+    <%- include('../partials/head', {title: info.name + " - new post"}) %>
+
+<body>
+    <%- include('../partials/nav', {user: locals.user, karma}) %>
+    <%- include('../partials/jumbotron', {name: info.name}) %>
+    <span id="auth"><%= isAuth %></span>
+
+    <div class="grid-container">
+        <div class="sidebar">
+                <%- include('../partials/sidebar_subreddit_actions', {name: info.name, state: state}) %>
+
+                <%- include('../partials/sidebar_subreddit_info', {desc: info.description}) %>
+        </div>
+
+        <div class="main">
+            <h4>new post</h4>
+            <div class="submit-wrapper">
+                    <% if(!locals.user) { %>
+                        You must be logged in to submit a post / link / subbeddit.
+                    <% } else { %>      
+                <form action="/r/<%= info.name %>/submit/post" method="post">
+                    <input type="text" class="form-control" name="title" placeholder="Enter title" required><br>
+                    <textarea class="form-control" rows="5" name="body" placeholder="Enter body" required></textarea><br>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                <% } %>
+
+            </div>
+        </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/autosize@4.0.2/dist/autosize.min.js"></script>
+
+        <script src="/js/index.js"></script>
+</body>
+</html>

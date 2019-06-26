@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<%- include('../partials/head', {title: "/u/" + profile_user + " - saved posts" }) %>
+
+<body>
+    <%- include('../partials/nav', {user: locals.user, karma}) %>
+    <%- include('../partials/jumbotron', {name: profile_user}) %>
+    <span id="auth"><%= isAuth %></span>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="main col-md-8">
+                <%- include('../partials/sort') %>
+
+                <% if (posts != undefined) { 
+                    posts.forEach((post) => { %>
+                <article class="post" data-ref="<%= post._id %>">
+                    <div class="arrows">
+                        <div class="upvote-post auth-req"><i class="far fa-caret-square-up"></i></div>
+                        <span class="post-votes" data-ref="<%= post._id %>"><%= post.votes %></span>
+                        <div class="downvote-post auth-req"><i class="far fa-caret-square-down"></i></div>
+                    </div>
+
+                    <% if(post.type == "img") { %>
+                    <a href="<%= post.link %>"><img src="<%= post.link %>" height="55" width="55" class="thumbnail"></a>
+                    <% } else if (post.type == "link") { %>
+                    <kbd class="p-4  d-inline thumbnail" style="font-weight: 900">
+                        <div style="font-size:1rem;"><%= post.username.charAt(0).toUpperCase()%></div>
+                    </kbd>
+                    <% } else { %>
+                    <a href="/r/<%= post.subreddit %>/<%= post._id %>"><img src="/images/post.png" height="55"
+                            width="55" class="thumbnail"></a>
+                    <% } %>
+
+                    <div class="info">
+                        <header>
+                            <% if(post.type == "post") { %>
+                            <a href="/r/<%= post.subreddit %>/<%= post._id %>"><%= post.title %></a>
+                            <%  } else { %>
+                            <a href="<%= post.link %>"><%= post.title %></a>
+                            <% } %>
+
+                        </header>
+                        <div>
+                            submitted <time title="<%= post.time %>">-</time>
+                            by <span class="post-user"><a href="/u/<%= post.username %>"><%= post.username %></a></span>
+                            <!-- from <span><a href="/r/<%= post.subreddit %>">/r/<%= post.subreddit %></a></span> -->
+                        </div>
+                        <ul class="post-options">
+                            <!-- <li><a href="/r/<%=post.subreddit %>/<%= post._id %>">comments</a></li> -->
+                            <li><a href="javascript:void(0)" class="save-post auth-req">save</a></li>
+                            <% if(post.username == locals.user) { %>
+                            <li><a href="javascript:void(0)" class="delete-post auth-req">delete</a></li>
+                            <% } %>
+
+                        </ul>
+                    </div>
+            </div>
+
+            <div class="sidebar col-md-4">
+                <img id="profile-pic" src="/images/default.png" height="134" width="134"><br>
+                <div id="profile-info">
+                    <!-- Karma: <span class="karma"><%=karma%></span> -->
+                    Joined: <span class="joined"><%= created %></span>
+                </div>
+
+                <a class="btn btn-block btn-outline-primary" href="/u/<%= profile_user %>/posts">Posts</a><br>
+                <!-- <a class="btn btn-block btn-outline-primary" href="/u/<%= profile_user %>/comments">Comments</a><br> -->
+                <div class="btn-group" style="width: 100%">
+                    <button type="button" class="btn btn-block btn-primary dropdown-toggle" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Saved
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/u/<%= profile_user %>/saved/posts">Saved Posts</a>
+                        <!-- <a class="dropdown-item" href="/u/<%= profile_user %>/saved/comments">Saved Comments</a> -->
+                    </div>
+                </div><br><br>
+
+                <!-- <h4 class="text-center">Subscribed (<%= subscribed.length %>)</h4>
+                <table class="table table-striped">
+                    <tbody>
+                        <% if (subscribed != undefined) { %>
+                        <% subscribed.forEach((s) => { %>
+                        <tr>
+                            <td><a href="/r/<%= s %>">/r/<%= s %></a></td>
+                        </tr>
+                        <% }); %>
+                        <% if(subscribed.length == 0) { %>
+                        They are not subscribed to any subbeddit
+                        <% } %>
+                        <% } else { %>
+                        <span class="text-center">They are not subscribed to any subbeddit</span>
+                        <% } %>
+                    </tbody>
+                </table> -->
+            </div>
+
+            </article>
+            <% });%>
+            <% if(posts.length == 0) { %>
+            There are no saved posts.
+            <% } %>
+            <% } else { %>
+            There are no saved posts.
+            <% } %>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/autosize@4.0.2/dist/autosize.min.js"></script>
+    <script src="/js/load.js"></script>
+
+    <script src="/js/index.js"></script>
+    <script src="/js/post.js"></script>
+    <script src="/js/sort.js"></script>
+
+</body>
+
+</html>

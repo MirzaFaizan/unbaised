@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<%- include('partials/head', {title: post.title}) %>
+
+<body>
+    <%- include('partials/nav', {user: locals.user}) %>
+    <%- include('partials/jumbotron', {name: info.name}) %>
+    <span id="auth"><%= isAuth %></span>
+
+    <div class="grid-container">
+        <div class="sidebar subarea edit-area">
+            <div class="area-overlap actions">
+                <%- include('partials/sidebar_subreddit_actions', {name: info.name}) %>
+            </div>
+
+            <div class="subscribed">
+                <%- include('partials/sidebar_subreddit_info', {desc: info.description}) %>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="comment-wrapper">
+                <article class="post" data-ref="<%= post._id %>">
+                    <div class="arrows">
+                        <div class="upvote-post auth-req"><i class="far fa-caret-square-up"></i></div>
+                        <span class="post-votes" data-ref="<%= post._id %>"><%= post.votes %></span>
+                        <div class="downvote-post auth-req"><i class="far fa-caret-square-down"></i></div>
+                    </div>
+
+                    <div class="info">
+                        <header>
+                            <% if(post.type == "post") { %>
+                            <a href="/r/<%= post.subreddit %>/<%= post._id %>"><%= post.title %></a>
+                            <%  } else { %>
+                            <a href="<%= post.link %>"><%= post.title %></a>
+                            <% } %>
+                        </header>
+
+                        <div>
+                            Submitted <time title="<%= post.time %>">-</time>
+                            by <span class="post-user"><a href="/u/<%= post.username %>"><%= post.username %></a></span>
+                            <!-- from <span><a href="/r/<%= post.subreddit %>">/r/<%= post.subreddit %></a></span> -->
+                        </div>
+
+                        <p class="border border-primary post-body">
+                            <% if(post.type == "post") { %><%= post.body %><%  } else { %><%= post.link %><% } %></p>
+                        <ul class="post-options">
+                            <% if(locals.isauth) { %>
+                            <li><a href="javascript:void(0)" class="save-post auth-req">Save</a></li>
+
+                            <% if(post.username == locals.user) { %>
+                            <li><a href="javascript:void(0)" class="edit-post auth-req">Edit</a></li>
+                            <li><a href="javascript:void(0)" class="delete-post auth-req">Delete</a></li>
+                            <% } %>
+                            <% } %>
+                        </ul>
+
+                    </div>
+                </article>
+            </div>
+            <div class="submit-wrapper">
+                <% if(!isAuth) { %>
+                You must be <a href="/login">logged in</a> to leave a comment
+                <% } else { %>
+                <form action="/r/<%=info.name%>/<%= post._id %>/comments" method="post">
+                    <textarea class="form-control comment-text" name="comment" rows="2" placeholder="Comment here ..."
+                        required maxlength="1000"></textarea><br>
+                    <button class="btn btn-primary auth-req" type="submit">Submit</button>
+                </form>
+                <% }; %>
+            </div>
+            <hr>
+
+            <div class="btn-group">
+                <h4 style="margin-right:10px;">Comments </h4><a class="dropdown-toggle"
+                    style="height:25px; margin-top:5px;" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">Sort
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item sort-top" href="?sort=top">Top</a>
+                    <a class="dropdown-item sort-new" href="?sort=new">New</a>
+                    <a class="dropdown-item sort-old" href="?sort=old">Old</a>
+                </div>
+            </div><br>
+            <% if (comments != undefined) { 
+                    comments.forEach((comment) => { %>
+
+            <div class="comment-wrapper">
+                <article class="comment" data-ref="<%= comment._id %>">
+                    <ul>
+                        <li><span class="comment-user"><a
+                                    href="/u/<%= comment.username %>"><%= comment.username %></a></span></li> •
+                        <li><span class="comment-votes"><%= comment.votes %></span> points</li> •
+                        <time title="<%= comment.time %>">-</time> </li>
+                    </ul>
+                    <div class="comment-body"><%= comment.body %></div>
+                    <ul class="comment-options">
+                        <li>
+                            <i class="far fa-caret-square-up upvote-comment auth-req"></i>
+                            <i class="far fa-caret-square-down downvote-comment auth-req"></i>
+                        </li>
+                        <li><span><a href="javascript:void(0)" class="reply-comment auth-req">reply</a></span></li>
+
+                        <% if(locals.isauth) { %>
+                        <li><a href="javascript:void(0)" class="save-comment auth-req">save</a></li>
+
+                        <% if(comment.username == locals.user) { %>
+                        <li><span><a href="javascript:void(0)" class="edit-comment auth-req">edit</a></span></li>
+                        <li><span><a href="javascript:void(0)" class="delete-comment auth-req">delete</a></span></li>
+                        <% } %>
+                        <% } %>
+                    </ul>
+                </article>
+            </div>
+            <% });%>
+            <% } else { %>
+            There are no comments.
+            <% } %>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/autosize@4.0.2/dist/autosize.min.js"></script>
+            <script src="/js/load.js"></script>
+
+            <script src="/js/index.js"></script>
+            <script src="/js/post.js"></script>
+            <script src="/js/comment.js"></script>
+            <script src="/js/sort.js"></script>
+            <script src="/js/media.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+.comment-wrapper {
+    background-color: #e9ecef;
+    margin-bottom: 15px;
+    border-radius: 0.25rem;
+}
+
+.info p {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
