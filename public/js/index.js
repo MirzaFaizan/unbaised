@@ -1,5 +1,5 @@
 $('document').ready(function() {
-  if (localStorage.getItem('firstTime') =s= null) {
+  if (localStorage.getItem('firstTime') == null) {
     swal({
       title: 'For the People By the People!',
       text:
