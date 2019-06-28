@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-<%- include('../partials/head', {title: "Unbiased - search"}) %>
+<%- include('../partials/head', {title: "Unbiased - Search"}) %>
 
 <body>
     <%- include('../partials/nav', {user: locals.user, karma}) %>
@@ -14,12 +14,14 @@
                     <input type="text" class="form-control" name="query" placeholder="Find a post" value="<%= query %>"
                         required>
                     <div class="input-group-append">
-                        <button class="btn btn-primary submit" type="submit">Search</button>
+                        <button class="btn btn-primary submit text-danger font-weight-bold"
+                            type="submit">Search</button>
                     </div>
                 </div>
             </form>
             <div class="btn-group" style="width: 100%">
-                <a class="btn btn-success auth-req" href="/submit/link" id="submit-link" style="width: 100%">New
+                <a class="btn btn-primary text-danger font-weight-bold auth-req" href="/submit/link" id="submit-link"
+                    style="width: 100%">New
                     link</a>
                 <!-- <a class="btn btn-primary auth-req" href="/submit/post" id="submit-post" style="width: 100%">New post</a> -->
             </div>

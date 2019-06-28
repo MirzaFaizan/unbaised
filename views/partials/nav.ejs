@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-dark bg-navy">
   <a class="navbar-brand" href="/">
     <img src="/images/icon.png" class="d-inline-block align-top" style="width:100px">
   </a>
@@ -6,8 +6,8 @@
     <% if(user) { %>
     <!-- Example single danger button -->
     <div class="btn-group">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-        aria-expanded="false"><span id="user"><%= user %></span></button>
+      <button type="button" class="btn btn-primary text-danger font-weight-bold text-capitalize dropdown-toggle"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span id="user"><%= user %></span></button>
       <div class="dropdown-menu dropdown-menu-right">
         <!-- <h6 class="dropdown-header">Karma: <span id="karma"><%=karma%></span></h6> -->
 
@@ -18,7 +18,7 @@
       </div>
     </div>
     <% } else { %>
-    <a class="btn btn-success" href="/login" id="user-settings">Sign in</a>
+    <a class="btn btn-primary font-weight-bold text-danger" href="/login" id="user-settings">Sign in</a>
     <% } %>
   </div>
 

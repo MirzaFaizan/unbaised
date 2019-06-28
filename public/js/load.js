@@ -12,7 +12,7 @@ $('article').ready(function() {
             if (ele.vote == 'up') {
               $(this)
                 .find('.upvote-post')
-                .addClass('up-enabled');
+                .addClass('red');
             } else if (ele.vote == 'down') {
               $(this)
                 .find('.downvote-post')

@@ -98,10 +98,10 @@ $("document").ready(function () {
         let neutralcounter;
         // if upvote is already toggled and user presses it again, 
         // toggle off the upvote button and decrement vote.
-        if ($(this).hasClass("up-enabled")) {
+        if ($(this).hasClass("red")) {
             counter = votes.text();
             votes.text(--counter);
-            $(this).removeClass("up-enabled");
+            $(this).removeClass("red");
             $.ajax({
                 type: "put",
                 url: `/vote/post/${ref}`,
@@ -118,7 +118,7 @@ $("document").ready(function () {
 
         if (neutralarrow.hasClass('up-enabled')) {
             neutralarrow.removeClass("up-enabled");
-            $(this).addClass("up-enabled");
+            $(this).addClass("red");
             neutralcounter = neutralvotes.text();
             neutralvotes.text(--neutralcounter);
             counter = votes.text();
@@ -140,30 +140,11 @@ $("document").ready(function () {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         // if downvote is already toggled while upvote is pressed
         // toggle off downvote and increment vote
         if (down_arrow.hasClass('down-enabled')) {
             down_arrow.removeClass("down-enabled");
-            $(this).addClass("up-enabled");
+            $(this).addClass("red");
             downcounter = downvotes.text();
             downvotes.text(--downcounter);
             counter = votes.text();
@@ -186,7 +167,7 @@ $("document").ready(function () {
         else if (!$(this).hasClass("up-enabled")) {
             counter = votes.text();
             votes.text(++counter);
-            $(this).addClass("up-enabled");
+            $(this).addClass("red");
 
             $.ajax({
                 type: "put",
@@ -239,8 +220,8 @@ $("document").ready(function () {
         }
 
 
-        if (uparrow.hasClass('up-enabled')) {
-            uparrow.removeClass("up-enabled");
+        if (uparrow.hasClass('red')) {
+            uparrow.removeClass("red");
             $(this).addClass("down-enabled");
             downcounter = downvotes.text();
             downvotes.text(++downcounter);
@@ -339,8 +320,8 @@ $(".neutralvote-post").click(function () {
         return false;
     }
 
-    if (uparrow.hasClass('up-enabled')) {
-        uparrow.removeClass("up-enabled");
+    if (uparrow.hasClass('red')) {
+        uparrow.removeClass("red");
         $(this).addClass("up-enabled");
         neutralcounter = neutralvotes.text();
         neutralvotes.text(++neutralcounter);
