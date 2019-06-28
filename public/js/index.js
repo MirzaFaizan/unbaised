@@ -3,9 +3,9 @@ $('document').ready(function() {
     swal({
       title: 'For the People By the People!',
       text:
-        'User post links to Articles from your common news source.\n \n Other vote whether it swings Left Right or Neutral',
+        'User post links to Articles from your common news sources.\n \n Other vote whether it swings Left Right or Neutral',
       icon: 'success',
-      button: 'Go To Feed!'
+      button: 'View Articles'
     });
     localStorage.setItem('firstTime', 'done');
   }

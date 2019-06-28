@@ -24,7 +24,7 @@
                             <a href="<%= post.link %>"><img src="<%=post.link%>" height="55" width="55"
                                     class="thumbnail"></a>
                             <% } else if (post.type == "link") { %>
-                            <kbd class="p-4  d-inline thumbnail bg-danger" style="font-weight: 900">
+                            <kbd class="p-4  d-inline thumbnail bg-red" style="font-weight: 900">
                                 <div style="font-size:2rem;"><%= post.username.charAt(0).toUpperCase()%></div>
                             </kbd>
                             <% } else { %>
