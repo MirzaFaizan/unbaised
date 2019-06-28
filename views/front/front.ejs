@@ -25,11 +25,11 @@
                                     class="thumbnail"></a>
                             <% } else if (post.type == "link") { %>
                             <kbd class="p-4  d-inline thumbnail bg-red" style="font-weight: 900">
-                                <div style="font-size:2rem;"><%= post.username.charAt(0).toUpperCase()%></div>
+                                <div style="font-size:1.3rem;"><%= post.username.charAt(0).toUpperCase()%></div>
                             </kbd>
                             <% } else { %>
-                            <a href="/r/<%= post.subreddit %>/<%= post._id %>"><img src="/images/post.png" height="55"
-                                    width="55" class="thumbnail"></a>
+                            <a style="font-size:1rem;" href="/r/<%= post.subreddit %>/<%= post._id %>"><img
+                                    src="/images/post.png" height="55" width="55" class="thumbnail"></a>
                             <% } %>
                             <div class="downvote-post auth-req d-flex flex-column">
                                 <h6>Swing Left</h6>
@@ -59,7 +59,7 @@
                             <a style="text-transform:capitalize"
                                 href="/r/<%= post.subreddit %>/<%= post._id %>"><%= post.title %></a>
                             <%  } else { %>
-                            <a href="<%= post.link %>" target="_blank"><%= post.link %></a>
+                            <a href="<%= post.link %>" style="font-size: 21px;" target="_blank"><%= post.link %></a>
                             <% } %>
                         </div>
                         <!-- Submitted <time title="<%= post.time %>">-</time>
