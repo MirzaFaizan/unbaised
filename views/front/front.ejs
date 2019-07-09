@@ -19,19 +19,19 @@
             <div class="main col-md-11">
                 <%- include('../partials/jumbotron', {subtitle:"Articles posted by users.Articles voted by users.",name: "Articles"}) %>
                 <hr>
-                <div class="col-md-11">
+                <div class="col-md-12">
                     <%- include('../partials/sidebar_index_actions.ejs') %>
                 </div>
 
                 <div class="container d-flex justify-content-around">
-                    <div class="row">
-                        <% if (posts != undefined) { 
-                                posts.forEach((post) => { %>
-                        <article class="post col-md-5 mt-5 mr-2 mb-1 shadow bg-white rounded"
-                            data-ref="<%= post._id %>">
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-md-10 col  text-truncate text-center">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <% if (posts != undefined) { 
+                                            posts.forEach((post) => { %>
+                            <article class="post col-md-5 col mt-5 mr-2 mb-1 shadow bg-white rounded"
+                                data-ref="<%= post._id %>">
+                                <div class="d-flex justify-content-around align-items-center">
+                                    <div class="col-md-10 col text-truncate text-center">
                                         <% if(post.type == "post") { %>
                                         <a style="text-transform:capitalize"
                                             href="/r/<%= post.subreddit %>/<%= post._id %>"><%= post.title %></a>
@@ -42,15 +42,15 @@
                                         <% } %>
                                     </div>
                                     <!-- Submitted <time title="<%= post.time %>">-</time>
-                                                        By <span class="post-user"><a style="text-transform:capitalize"
-                                                                href="/u/<%= post.username %>"><%= post.username %></a></span> -->
+                                                                    By <span class="post-user"><a style="text-transform:capitalize"
+                                                                            href="/u/<%= post.username %>"><%= post.username %></a></span> -->
                                     <!-- from <span><a href="/r/<%= post.subreddit %>">/r/<%= post.subreddit %></a></span> -->
                                     <% if(post.username == locals.user) { %>
                                     <div class="col-md-2 col">
                                         <ul class="post-options">
                                             <!-- <li><a href="/r/<%=post.subreddit %>/<%= post._id %>"><%=post.num_of_comments%>
-                                                                    comments</a>
-                                                            </li> -->
+                                                                                comments</a>
+                                                                        </li> -->
                                             <!-- <li><a href="javascript:void(0)" class="save-post auth-req">Save</a></li> -->
                                             <li><a href="javascript:void(0)" class="delete-post auth-req">Delete</a>
                                             </li>
@@ -58,47 +58,48 @@
                                     </div>
                                     <% } %>
                                 </div>
-                            </div>
-                            <div class="arrows col-md-12 d-flex flex-column justify-content-between ">
-                                <div class="vote-count col-md-12 d-flex justify-content-between">
-                                    <% if(post.type == "img") { %>
-                                    <a href="<%= post.link %>"><img src="<%=post.link%>" height="55" width="55"
-                                            class="thumbnail"></a>
-                                    <% } else if (post.type == "link") { %>
-                                    <a style="font-size:1rem;" href="/r/<%= post.subreddit %>/<%= post._id %>"><img
-                                            src="/images/post.png" height="55" width="55" class="thumbnail"></a>
-                                    <% } else { %>
-                                    <a style="font-size:1rem;" href="/r/<%= post.subreddit %>/<%= post._id %>"><img
-                                            src="/images/post.png" height="55" width="55" class="thumbnail"></a>
-                                    <% } %>
-                                    <div class="downvote-post auth-req d-flex flex-column">
-                                        <i class="fas fa-chevron-left text-center"></i>
-                                        <span class="downpost-votes text-center font-weight-bold"
-                                            data-ref="<%= post._id %>"><%= post.downvotes %></span>
-                                        <h6 class="font-weight-light">Swing<br>Left</h6>
-                                    </div>
-                                    <div class="neutralvote-post auth-req d-flex flex-column">
-                                        <i class="fas fa-chevron-up text-center"></i>
-                                        <span class="neutralpost-votes text-center font-weight-bold"
-                                            data-ref="<%= post._id %>"><%= post.neutralvotes %></span>
-                                        <h6 class="font-weight-light">Neutral</h6>
-                                    </div>
-                                    <div class="upvote-post auth-req d-flex flex-column">
-                                        <i class="fas fa-chevron-right text-center"></i>
-                                        <span class="upvote-post-votes text-center font-weight-bold"
-                                            data-ref="<%= post._id %>"><%= post.upvotes %></span>
-                                        <h6 class="font-weight-light">Swing<br>Right</h6>
+                                <div class="arrows col-md-12 d-flex flex-column justify-content-between ">
+                                    <div class="vote-count col-md-12 d-flex justify-content-between">
+                                        <% if(post.type == "img") { %>
+                                        <a href="<%= post.link %>"><img src="<%=post.link%>" height="55" width="55"
+                                                class="thumbnail"></a>
+                                        <% } else if (post.type == "link") { %>
+                                        <a style="font-size:1rem;" href="<%= post.link %>" target="_blank"><img
+                                                src="/images/post.png" height="55" width="55" class="thumbnail"></a>
+                                        <% } else { %>
+                                        <a style="font-size:1rem;" href="/r/<%= post.subreddit %>/<%= post._id %>"><img
+                                                src="/images/post.png" height="55" width="55" class="thumbnail"></a>
+                                        <% } %>
+                                        <div class="downvote-post auth-req d-flex flex-column">
+                                            <i class="fas fa-chevron-left text-center"></i>
+                                            <span class="downpost-votes text-center font-weight-bold"
+                                                data-ref="<%= post._id %>"><%= post.downvotes %></span>
+                                            <h6 class="font-weight-light">Swing<br>Left</h6>
+                                        </div>
+                                        <div class="neutralvote-post auth-req d-flex flex-column">
+                                            <i class="fas fa-chevron-up text-center"></i>
+                                            <span class="neutralpost-votes text-center font-weight-bold"
+                                                data-ref="<%= post._id %>"><%= post.neutralvotes %></span>
+                                            <h6 class="font-weight-light">Neutral</h6>
+                                        </div>
+                                        <div class="upvote-post auth-req d-flex flex-column">
+                                            <i class="fas fa-chevron-right text-center"></i>
+                                            <span class="upvote-post-votes text-center font-weight-bold"
+                                                data-ref="<%= post._id %>"><%= post.upvotes %></span>
+                                            <h6 class="font-weight-light">Swing<br>Right</h6>
+                                        </div>
                                     </div>
                                 </div>
+                            </article>
+                            <% });%>
+                            <% } else { %>
+                            <div class="alert alert-success mr-5 col-md-12">
+                                <strong>Sorry!</strong> There are no posts.
                             </div>
-                        </article>
-                        <% });%>
-                        <% } else { %>
-                        <div class="alert alert-success mr-5 col-md-12">
-                            <strong>Sorry!</strong> There are no posts.
+                            <% } %>
                         </div>
-                        <% } %>
                     </div>
+
                 </div>
             </div>
         </div>
