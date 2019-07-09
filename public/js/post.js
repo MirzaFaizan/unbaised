@@ -89,19 +89,20 @@ $("document").ready(function () {
         let ref = query.data('ref')
         let votes = query.find('.upvote-post-votes')
         let downvotes = query.find('.downpost-votes')
-        let down_arrow = query.find(".downvote-post")
+        let down_arrow = query.find(".fa-chevron-left")
         let post_user = query.find('.post-user').text()
-        let neutralarrow = query.find('.neutralvote-post')
+        let neutralarrow = query.find('.fa-chevron-up');
         let neutralvotes = query.find('.neutralpost-votes');
+        let rightarrow = query.find('.fa-chevron-right');
         let counter;
         let downcounter;
         let neutralcounter;
         // if upvote is already toggled and user presses it again, 
         // toggle off the upvote button and decrement vote.
-        if ($(this).hasClass("red")) {
+        if ($(rightarrow).hasClass("red")) {
             counter = votes.text();
             votes.text(--counter);
-            $(this).removeClass("red");
+            $(rightarrow).removeClass("red");
             $.ajax({
                 type: "put",
                 url: `/vote/post/${ref}`,
@@ -118,7 +119,7 @@ $("document").ready(function () {
 
         if (neutralarrow.hasClass('up-enabled')) {
             neutralarrow.removeClass("up-enabled");
-            $(this).addClass("red");
+            $(rightarrow).addClass("red");
             neutralcounter = neutralvotes.text();
             neutralvotes.text(--neutralcounter);
             counter = votes.text();
@@ -144,7 +145,7 @@ $("document").ready(function () {
         // toggle off downvote and increment vote
         if (down_arrow.hasClass('down-enabled')) {
             down_arrow.removeClass("down-enabled");
-            $(this).addClass("red");
+            $(rightarrow).addClass("red");
             downcounter = downvotes.text();
             downvotes.text(--downcounter);
             counter = votes.text();
@@ -164,10 +165,10 @@ $("document").ready(function () {
             return false;
         }
 
-        else if (!$(this).hasClass("up-enabled")) {
+        else if (!$(rightarrow).hasClass("up-enabled")) {
             counter = votes.text();
             votes.text(++counter);
-            $(this).addClass("red");
+            $(rightarrow).addClass("red");
 
             $.ajax({
                 type: "put",
@@ -188,10 +189,11 @@ $("document").ready(function () {
     $(".downvote-post").click(function () {
         let query = $(this).closest('article')
         let ref = query.data('ref')
-        let uparrow = query.find(".upvote-post")
+        let uparrow = query.find(".fa-chevron-right")
         let downvotes = query.find('.downpost-votes');
-        let neutralarrow = query.find('.neutralvote-post')
+        let neutralarrow = query.find('.fa-chevron-up')
         let neutralvotes = query.find('.neutralpost-votes');
+        let leftarrow = query.find('.fa-chevron-left');
         
         let post_user = query.find('.post-user').text()
         let votes = query.find('.upvote-post-votes');
@@ -199,11 +201,11 @@ $("document").ready(function () {
         let neutralcounter;
         // if downvote is already toggled and user presses it again, 
         // toggle off the downvote button and increment vote.
-        if ($(this).hasClass("down-enabled")) {
+        if ($(leftarrow).hasClass("down-enabled")) {
             counter = 0;
             counter = downvotes.text();
             downvotes.text(--counter);
-            $(this).removeClass("down-enabled");
+            $(leftarrow).removeClass("down-enabled");
 
             $.ajax({
                 type: "put",
@@ -222,7 +224,7 @@ $("document").ready(function () {
 
         if (uparrow.hasClass('red')) {
             uparrow.removeClass("red");
-            $(this).addClass("down-enabled");
+            $(leftarrow).addClass("down-enabled");
             downcounter = downvotes.text();
             downvotes.text(++downcounter);
             counter = votes.text();
@@ -245,7 +247,7 @@ $("document").ready(function () {
         
         if (neutralarrow.hasClass('up-enabled')) {
             neutralarrow.removeClass("up-enabled");
-            $(this).addClass("down-enabled");
+            $(leftarrow).addClass("down-enabled");
             neutralcounter = neutralvotes.text();
             neutralvotes.text(--neutralcounter);
             counter = downvotes.text();
@@ -265,10 +267,10 @@ $("document").ready(function () {
             return false;
         } 
 
-         if (!$(this).hasClass("down-enabled")) {
+         if (!$(leftarrow).hasClass("down-enabled")) {
             counter = downvotes.text();
             downvotes.text(++counter);
-            $(this).addClass("down-enabled");
+            $(leftarrow).addClass("down-enabled");
 
             $.ajax({
                 type: "put",
@@ -288,99 +290,102 @@ $("document").ready(function () {
 
 
 
-// Neutral Button.
-$(".neutralvote-post").click(function () {
-    let query = $(this).closest('article');
-    let ref = query.data('ref')
-    let uparrow = query.find(".upvote-post");
-    let down_arrow = query.find(".downvote-post");
-    let neutralvotes = query.find('.neutralpost-votes')
-    let post_user = query.find('.post-user').text()
-    let downvotes = query.find('.downpost-votes');
-    let upvotes = query.find('.upvote-post-votes');
-    let counter;
-    // if downvote is already toggled and user presses it again, 
-    // toggle off the downvote button and increment vote.
-    if ($(this).hasClass("up-enabled")) {
-        counter = 0;
-        counter = neutralvotes.text();
-        neutralvotes.text(--counter);
-        $(this).removeClass("up-enabled");
-        $.ajax({
-            type: "put",
-            data: {
-                vote: counter,
-                state: "neutral",
-                action: "neutral-downvote-toggle-increment",
-                user: post_user
-            },
-            url: `/vote/post/${ref}`,
-            success: function (res) { }
-        });
+if($('#auth').text() == 'true'){
+    $(".neutralvote-post").click(function () {
+        let query = $(this).closest('article');
+        let ref = query.data('ref')
+        let uparrow = query.find(".fa-chevron-right");
+        let down_arrow = query.find(".fa-chevron-left");
+        let neutralvotes = query.find('.neutralpost-votes')
+        let post_user = query.find('.post-user').text()
+        let downvotes = query.find('.downpost-votes');
+        let upvotes = query.find('.upvote-post-votes');
+        let neutralarrow = query.find('.fa-chevron-up');
+        let counter;
+        // if downvote is already toggled and user presses it again, 
+        // toggle off the downvote button and increment vote.
+        if ($(neutralarrow).hasClass("up-enabled")) {
+            counter = 0;
+            counter = neutralvotes.text();
+            neutralvotes.text(--counter);
+            $(neutralarrow).removeClass("up-enabled");
+            $.ajax({
+                type: "put",
+                data: {
+                    vote: counter,
+                    state: "neutral",
+                    action: "neutral-downvote-toggle-increment",
+                    user: post_user
+                },
+                url: `/vote/post/${ref}`,
+                success: function (res) { }
+            });
+            return false;
+        }
+    
+        if (uparrow.hasClass('red')) {
+            uparrow.removeClass("red");
+            $(neutralarrow).addClass("up-enabled");
+            neutralcounter = neutralvotes.text();
+            neutralvotes.text(++neutralcounter);
+            counter = upvotes.text();
+            upvotes.text(--counter);
+            $.ajax({
+                type: "put",
+                data: {
+                    neutralvote: neutralcounter,
+                    vote: counter,
+                    state: "down-neutral",
+                    action: "upvote-decrement-neutral-increment",
+                    user: post_user
+                },
+                url: `/vote/post/${ref}`,
+                success: function (res) { }
+            });
+            return false;
+        } 
+    
+        if (down_arrow.hasClass('down-enabled')) {
+            down_arrow.removeClass("down-enabled");
+            $(neutralarrow).addClass("up-enabled");
+            neutralcounter = neutralvotes.text();
+            neutralvotes.text(++neutralcounter);
+            counter = downvotes.text();
+            downvotes.text(--counter);
+            $.ajax({
+                type: "put",
+                data: {
+                    neutralvote: neutralcounter,
+                    vote: counter,
+                    state: "down-neutral",
+                    action: "downvote-decrement-neutral-increment",
+                    user: post_user
+                },
+                url: `/vote/post/${ref}`,
+                success: function (res) { }
+            });
+            return false;
+        } 
+        // if upvote is already toggled while downvote is pressed
+        // toggle off upvote and decrement vote
+         if (!$(neutralarrow).hasClass("up-enabled")) {
+            counter = neutralvotes.text();
+            neutralvotes.text(++counter);
+            $(neutralarrow).addClass("up-enabled");
+    
+            $.ajax({
+                type: "put",
+                data: {
+                    vote: counter,
+                    state: "down-neutral",
+                    action: "neutral-downvote-increment",
+                    user: post_user
+                },
+                url: `/vote/post/${ref}`,
+                success: function (res) { }
+            });
+        }
         return false;
-    }
+    });
+}
 
-    if (uparrow.hasClass('red')) {
-        uparrow.removeClass("red");
-        $(this).addClass("up-enabled");
-        neutralcounter = neutralvotes.text();
-        neutralvotes.text(++neutralcounter);
-        counter = upvotes.text();
-        upvotes.text(--counter);
-        $.ajax({
-            type: "put",
-            data: {
-                neutralvote: neutralcounter,
-                vote: counter,
-                state: "down-neutral",
-                action: "upvote-decrement-neutral-increment",
-                user: post_user
-            },
-            url: `/vote/post/${ref}`,
-            success: function (res) { }
-        });
-        return false;
-    } 
-
-    if (down_arrow.hasClass('down-enabled')) {
-        down_arrow.removeClass("down-enabled");
-        $(this).addClass("up-enabled");
-        neutralcounter = neutralvotes.text();
-        neutralvotes.text(++neutralcounter);
-        counter = downvotes.text();
-        downvotes.text(--counter);
-        $.ajax({
-            type: "put",
-            data: {
-                neutralvote: neutralcounter,
-                vote: counter,
-                state: "down-neutral",
-                action: "downvote-decrement-neutral-increment",
-                user: post_user
-            },
-            url: `/vote/post/${ref}`,
-            success: function (res) { }
-        });
-        return false;
-    } 
-    // if upvote is already toggled while downvote is pressed
-    // toggle off upvote and decrement vote
-     if (!$(this).hasClass("up-enabled")) {
-        counter = neutralvotes.text();
-        neutralvotes.text(++counter);
-        $(this).addClass("up-enabled");
-
-        $.ajax({
-            type: "put",
-            data: {
-                vote: counter,
-                state: "down-neutral",
-                action: "neutral-downvote-increment",
-                user: post_user
-            },
-            url: `/vote/post/${ref}`,
-            success: function (res) { }
-        });
-    }
-    return false;
-});

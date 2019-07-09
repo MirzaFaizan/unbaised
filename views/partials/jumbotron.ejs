@@ -1,7 +1,32 @@
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h1 class="display-4 text-center">
-            <span id="subreddit-name"><%= name %></span>
-        </h1>
+<span id="auth"><%= isAuth %></span>
+<div class="jumbotron jumbotron-fluid bg-transparent border-bottom-0">
+    <div class="row">
+        <div class="text col-md-10 mt-2">
+            <h1 class="display-5">
+                <span id="subreddit-name font-weight-bold"><%= name %></span><br>
+            </h1>
+            <h1 class="lead"><%= subtitle %></h1>
+        </div>
+        <div id="user-info col-md-1 mt-3">
+            <% if(user) { %>
+            <div class="btn-group">
+                <button style="width:140px;" type="button"
+                    class="btn bg-navy test text-white mt-4 shadow-lg text-capitalize dropdown-toggle"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
+                        id="user"><%= user %></span></button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="/u/<%=user%>">Profile</a>
+                    <a class="dropdown-item" href="/settings">Settings</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/logout">Logout</a>
+                </div>
+            </div>
+            <% } else { %>
+            <a class="btn bg-navy test text-white mt-4 shadow-lg" style="width:140px;" href="/login" role="button"
+                id="user-settings">Sign
+                in</a>
+            <% } %>
+        </div>
     </div>
 </div>
+</span>

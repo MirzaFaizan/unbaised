@@ -17,13 +17,22 @@ p {
 }
 
 .down-enabled {
-  color: blue;
+  background-color: blue;
+  padding: 1rem;
+  color: white;
+  border-radius: 2px;
 }
 
 .up-enabled {
-  color: orange;
+  background-color: orange;
+  padding: 1rem;
+  color: white;
+  border-radius: 2px;
 }
 
 .red {
-  color:red;
+  background-color: red;
+  padding: 1rem;
+  color: white;
+  border-radius: 2px;
 }

@@ -3,33 +3,40 @@
 <%- include('../partials/head', {title: "Unbiased - new link"}) %>
 
 <body>
-    <%- include('../partials/nav', {user: locals.user, karma}) %>
-    <%- include('../partials/jumbotron', {name: "Post New Link"}) %>
+    <!-- <%- include('../partials/nav', {user: locals.user, karma}) %> -->
     <span id="auth"><%= isAuth %></span>
+    <div class="container-fluid">
+        <div class="row">
+            <div
+                class="col-md-1 sticky-top bg-navy custom-nav d-flex flex-column justify-content-center align-items-center">
+                <div class="nav ">
+                    <a class="navbar-brand" href="/">
+                        <img src="/images/icon.png" class="d-inline-block align-top rotate">
+                    </a>
+                </div>
+            </div>
+            <div class="main col-md-11">
+                <%- include('../partials/jumbotron', {name: "Post New Link", subtitle:"Post New Articles To Be Voted On."}) %>
+                <!-- <h4 class="display-4">Post a new Link</h4> -->
+                <div class="submit-wrapper">
+                    <% if(!locals.user) { %>
+                    You must be logged in to submit a link.
+                    <% } else { %>
 
-    <div class="container">
-        <div class="sidebar">
+                    <form id="form-post-or-link" class="bg-transparent" action="/submit/link" method="post">
+                        <input type="text" class="form-control" name="title" placeholder="Enter Header of Article..."
+                            required><br>
+                        <input type="text" class="form-control" name="link" placeholder="Enter link..." required><br>
+                        <input type="hidden" class="form-control" name="subreddit" id="subreddit_form"
+                            placeholder="Enter subbeddit" value="gaming" required>
+                        <!-- <div class="invalid-feedback">That subbeddit doesn't exist!</div><br> -->
+                        <button type="submit" class="btn bg-navy text-white auth-req"
+                            id="link-submit-button">Submit</button>
+                    </form>
 
-        </div>
+                    <% } %>
 
-        <div class="main">
-            <!-- <h4 class="display-4">Post a new Link</h4> -->
-            <div class="submit-wrapper">
-                <% if(!locals.user) { %>
-                You must be logged in to submit a link.
-                <% } else { %>
-
-                <form id="form-post-or-link" action="/submit/link" method="post">
-                    <input type="text" class="form-control" name="title" placeholder="Enter title" required><br>
-                    <input type="text" class="form-control" name="link" placeholder="Enter link" required><br>
-                    <input type="hidden" class="form-control" name="subreddit" id="subreddit_form"
-                        placeholder="Enter subbeddit" value="gaming" required>
-                    <!-- <div class="invalid-feedback">That subbeddit doesn't exist!</div><br> -->
-                    <button type="submit" class="btn btn-primary text-danger font-weight-bold btn-block auth-req"
-                        id="link-submit-button">Submit</button>
-                </form>
-
-                <% } %>
+                </div>
 
             </div>
         </div>

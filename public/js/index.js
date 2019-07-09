@@ -1,15 +1,4 @@
 $('document').ready(function() {
-  // if (localStorage.getItem('firstTime') != null) {
-  //   swal({
-  //     title: 'For the People By the People!',
-  //     text:
-  //       'User post links to Articles from your common news sources.\n \n Other vote whether it swings Left Right or Neutral',
-  //     icon: 'success',
-  //     button: 'View Articles'
-  //   });
-  //   localStorage.setItem('firstTime', 'done');
-  // }
-
   // function that converts all time dates on a page to relative time
   $('time').each(function(index) {
     $(this).text(moment($(this).attr('title')).fromNow());
@@ -22,6 +11,14 @@ $('document').ready(function() {
 
   // event handler that checks if the user is authenticated when they click an auth-only action.
   $('.auth-req').click(function(e) {
+    if ($('#auth').text() == 'false') {
+      alert('You must be logged in to do that.');
+      e.stopImmediatePropagation();
+      return false;
+    }
+  });
+
+  $('.neutralvote-post').click(function(e) {
     if ($('#auth').text() == 'false') {
       alert('You must be logged in to do that.');
       e.stopImmediatePropagation();

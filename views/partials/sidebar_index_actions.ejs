@@ -1,18 +1,33 @@
-<form id="form-search" action="/search/" method="post">
-    <div class="input-group mb-3">
-        <input type="text" class="form-control" name="query" placeholder="Find a post" required>
-        <div class="input-group-append">
-            <button class="btn btn-primary font-weight-bold text-danger submit" type="submit">Search</button>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-1">
+            <form id="form-search form-group" action="/search/" method="post">
+                <div class="input-group mb-3 border-0">
+                    <input type="text" class="form-control test shadow border-0" name="query"
+                        placeholder="Find a post..." required>
+                    <div class="input-group-append">
+                        <button type="submit" class="input-group-text test bg-navy text-white submit">
+                            <i class="fa fa-search" role="submit">
+                            </i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-4">
+            <div class="btn-group float-right">
+                <div class="mt-1 p-1">
+                    <%- include('../partials/sort.ejs') %>
+                </div>
+                <a class="text-dark mt-1 p-1 auth-req" href="/submit/link" id="submit-link"><i class="fa fa-plus">
+                    </i></a>
+
+                <!-- <a class="btn btn-primary auth-req" href="/submit/post" id="submit-post" style="width: 100%">New post</a> -->
+            </div>
         </div>
     </div>
-</form>
 
-
-<div class="btn-group" style="width: 100%">
-    <a class="btn bg-red font-weight-bold  auth-req" href="/submit/link" id="submit-link" style="width: 100%">New
-        link</a>
-    <!-- <a class="btn btn-primary auth-req" href="/submit/post" id="submit-post" style="width: 100%">New post</a> -->
 </div>
-<br><br>
+
+
 
 <!-- <a class="btn btn-block btn-light auth-req" href="/submit/subreddit" id="create-subreddit">Create subbeddit</a><br> -->

@@ -3,20 +3,29 @@
 <%- include('../partials/head', {title: "/u/" + profile_user + " - posts" }) %>
 
 <body>
-    <%- include('../partials/nav', {user: locals.user, karma}) %>
-    <%- include('../partials/jumbotron', {name: profile_user}) %>
     <span id="auth"><%= isAuth %></span>
 
-    <div class="container text-center">
+    <div class="container-fluid text-center">
         <div class="row">
+            <div
+                class="col-md-1 sticky-top bg-navy custom-nav d-flex flex-column justify-content-center align-items-center">
+                <div class="nav ">
+                    <a class="navbar-brand" href="/">
+                        <img src="/images/icon.png" class="d-inline-block align-top rotate">
+                    </a>
+                </div>
+            </div>
 
-
-            <div class="main col-md-8">
-                <%- include('../partials/sort') %>
-
+            <div class="main col-md-11">
+                <%- include('../partials/jumbotron', {name: profile_user,subtitle:"View your Post here."}) %>
+                <img id="profile-pic" src="/images/default.png" height="134" width="134"><br>
+                <div id="profile-info">
+                    <!-- Karma: <span class="karma"><%=karma%></span> -->
+                    Joined: <span class="joined"><%= created %></span>
+                </div>
                 <% if (posts != undefined) { 
                     posts.forEach((post) => { %>
-                <article class="post" data-ref="<%= post._id %>">
+                <article class="post shadow-lg col-md-11 mt-2" data-ref="<%= post._id %>">
                     <!-- <div class="arrows">
                         <div class="upvote-post auth-req"><i class="far fa-caret-square-up"></i></div>
                         <span class="post-votes" data-ref="<%= post._id %>"><%= post.votes %></span>
@@ -24,7 +33,8 @@
                     </div> -->
 
                     <% if(post.type == "img") { %>
-                    <a href="<%= post.link %>"><img src="<%= post.link %>" height="55" width="55" class="thumbnail"></a>
+                    <a href="<%= post.link %>"><img src="<%= post.link %>" height="55" width="55"
+                            class="thumbnail text-truncate"></a>
                     <% } else if (post.type == "link") { %>
                     <!-- <kbd class="d-inline thumbnail" style="font-weight: 900">
                         <div style="font-size:1rem;"><%= post.username.charAt(0).toUpperCase()%></div>
@@ -39,7 +49,7 @@
                             <% if(post.type == "post") { %>
                             <a href="/r/<%= post.subreddit %>/<%= post._id %>"><%= post.title %></a>
                             <%  } else { %>
-                            <a target="_blank" href="<%= post.link %>"><%= post.link %></a>
+                            <a target="_blank" href="<%= post.link %>"><%= post.title %></a>
                             <% } %>
                         </header>
                         <div>
@@ -68,17 +78,12 @@
                 <% } %>
 
             </div>
-            <div class="sidebar col-md-4 order-first order-md-last">
-                <img id="profile-pic" src="/images/default.png" height="134" width="134"><br>
-                <div id="profile-info">
-                    <!-- Karma: <span class="karma"><%=karma%></span> -->
-                    Joined: <span class="joined"><%= created %></span>
-                </div>
+            <!-- <div class="sidebar col-md-2 order-first order-md-last">
 
                 <!-- <a class="btn btn-block btn-primary" href="/u/<%= profile_user %>/posts">Posts</a><br> -->
-                <!-- <a class="btn btn-block btn-outline-primary" href="/u/<%= profile_user %>/comments">Comments</a><br> -->
+            <!-- <a class="btn btn-block btn-outline-primary" href="/u/<%= profile_user %>/comments">Comments</a><br> -->
 
-                <!-- <h4 class="text-center">Subscribed (<%= subscribed.length %>)</h4>
+            <!-- <h4 class="text-center">Subscribed (<%= subscribed.length %>)</h4>
                 <table class="table table-striped">
                     <tbody>
                         <% if (subscribed != undefined) { %>
@@ -95,8 +100,8 @@
                         <% } %>
                     </tbody>
                 </table> -->
-            </div>
         </div>
+    </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

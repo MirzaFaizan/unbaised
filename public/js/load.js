@@ -11,15 +11,15 @@ $('article').ready(function() {
           if (ele.ref == $(this).data('ref')) {
             if (ele.vote == 'up') {
               $(this)
-                .find('.upvote-post')
+                .find('.fa-chevron-right')
                 .addClass('red');
             } else if (ele.vote == 'down') {
               $(this)
-                .find('.downvote-post')
+                .find('.fa-chevron-left')
                 .addClass('down-enabled');
             } else if (ele.vote == 'down-neutral') {
               $(this)
-                .find('.neutralvote-post')
+                .find('.fa-chevron-up')
                 .addClass('up-enabled');
             }
             if (ele.saved == true) {
