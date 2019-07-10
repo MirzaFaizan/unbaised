@@ -3,88 +3,95 @@
 <%- include('../partials/head', {title: "Unbiased - Search"}) %>
 
 <body>
-    <%- include('../partials/nav', {user: locals.user, karma}) %>
     <span id="auth"><%= isAuth %></span>
 
-    <div class="container">
-        <div class="sidebar">
-            <form id="form-search" action="/search/" method="post">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="query" placeholder="Find a post" value="<%= query %>"
-                        required>
-                    <div class="input-group-append">
-                        <button class="btn btn-primary submit text-danger font-weight-bold"
-                            type="submit">Search</button>
-                    </div>
+    <div class="container-fluid">
+        <div class="row">
+
+            <div
+                class="col-md-1 sticky-top bg-navy custom-nav d-flex flex-column justify-content-center align-items-center">
+                <div class="nav">
+                    <a class="navbar-brand" href="/">
+                        <img src="/images/icon.png" class="d-inline-block align-top rotate">
+                    </a>
                 </div>
-            </form>
-            <div class="btn-group" style="width: 100%">
-                <a class="btn bg-red  font-weight-bold auth-req" href="/submit/link" id="submit-link"
-                    style="width: 100%">New
-                    link</a>
-                <!-- <a class="btn btn-primary auth-req" href="/submit/post" id="submit-post" style="width: 100%">New post</a> -->
             </div>
-            <br><br>
+            <div class="col-md-11">
+                <%- include('../partials/jumbotron', {subtitle:"Search articles posted by other users.",name: "Search"}) %>
+                <div class="container">
+                    <form id="form-search" action="/search/" method="post">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" name="query" placeholder="Find a post"
+                                value="<%= query %>" required>
+                            <div class="input-group-append">
+                                <button class="btn bg-navy text-light submit" type="submit">Search</button>
+                            </div>
+                        </div>
+                    </form>
 
-            <!-- <a class="btn btn-block btn-light auth-req" href="/submit/subreddit" id="create-subreddit">Create
-                subbeddit</a><br> -->
+                    <!-- <a class="btn btn-block btn-light auth-req" href="/submit/subreddit" id="create-subreddit">Create
+                                subbeddit</a><br> -->
 
-            <%- include('../partials/sidebar_index_subscribed', {isAuth, subscribed}) %>
-        </div>
-
-        <div class="main">
-            <% if (posts != undefined) { %>
-            <h4>Results (<%= posts.length %>)</h4>
-            <% } %>
-
-            <% if (posts != undefined) { 
-                    posts.forEach((post) => { %>
-            <article class="post" data-ref="<%= post._id %>">
-                <!-- <div class="arrows">
-                    <div class="upvote-post auth-req"><i class="far fa-caret-square-up"></i></div>
-                    <span class="post-votes" data-ref="<%= post._id %>"><%= post.votes %></span>
-                    <div class="downvote-post auth-req"><i class="far fa-caret-square-down"></i></div>
-                </div> -->
-
-                <!-- <% if(post.type == "img") { %>
-                <a href="<%= post.link %>"><img src="<%=post.link%>" height="55" width="55" class="thumbnail"></a>
-                <% } else if (post.type == "link") { %>
-                <a href="<%= post.link %>"><img src="/images/link.png" height="55" width="55" class="thumbnail"></a>
-                <% } else { %>
-                <a href="/r/<%= post.subreddit %>/<%= post._id %>"><img src="/images/post.png" height="55" width="55"
-                        class="thumbnail"></a>
-                <% } %> -->
-
-                <div class="info">
-                    <header>
-                        <% if(post.type == "post") { %>
-                        <a href="/r/<%= post.subreddit %>/<%= post._id %>"><%= post.title %></a>
-                        <%  } else { %>
-                        <a target="_blank" href="<%= post.link %>"><%= post.title %></a>
-                        <% } %>
-
-                    </header>
-                    <div>
-                        <!-- submitted <time title="<%= post.time %>">-</time>
-                        by <span><a href="/u/<%= post.username %>"><%= post.username %></a></span> -->
-                        <!-- from <span><a href="/r/<%= post.subreddit %>">/r/<%= post.subreddit %></a></span> -->
-                    </div>
-                    <ul>
-                        <!-- <li><a href="/r/<%=post.subreddit %>/<%= post._id %>">comments</a></li> -->
-                        <!-- <li><a href="javascript:void(0)" class="save-post auth-req">save</a></li> -->
-                        <% if(post.username == locals.user) { %>
-                        <li><a href="javascript:void(0)" class="delete-post auth-req">delete</a></li>
-                        <% } %>
-
-                    </ul>
+                    <%- include('../partials/sidebar_index_subscribed', {isAuth, subscribed}) %>
                 </div>
-            </article>
-            <% });%>
-            <% } else { %>
-            <h4>Results (0)</h4>
-            There are no posts.
-            <% } %>
+
+                <div class="container">
+                    <% if (posts != undefined) { %>
+                    <h4>Results (<%= posts.length %>)</h4>
+                    <% } %>
+
+                    <% if (posts != undefined) { 
+                                    posts.forEach((post) => { %>
+                    <article class="post" data-ref="<%= post._id %>">
+                        <!-- <div class="arrows">
+                                    <div class="upvote-post auth-req"><i class="far fa-caret-square-up"></i></div>
+                                    <span class="post-votes" data-ref="<%= post._id %>"><%= post.votes %></span>
+                                    <div class="downvote-post auth-req"><i class="far fa-caret-square-down"></i></div>
+                                </div> -->
+
+                        <!-- <% if(post.type == "img") { %>
+                                <a href="<%= post.link %>"><img src="<%=post.link%>" height="55" width="55" class="thumbnail"></a>
+                                <% } else if (post.type == "link") { %>
+                                <a href="<%= post.link %>"><img src="/images/link.png" height="55" width="55" class="thumbnail"></a>
+                                <% } else { %>
+                                <a href="/r/<%= post.subreddit %>/<%= post._id %>"><img src="/images/post.png" height="55" width="55"
+                                        class="thumbnail"></a>
+                                <% } %> -->
+
+                        <div class="info">
+                            <header>
+                                <% if(post.type == "post") { %>
+                                <a href="/r/<%= post.subreddit %>/<%= post._id %>"><%= post.title %></a>
+                                <%  } else { %>
+                                <a target="_blank" class="text-dark font-weight-bold"
+                                    href="<%= post.link %>"><%= post.title %></a>
+                                <% } %>
+
+                            </header>
+                            <div>
+                                <!-- submitted <time title="<%= post.time %>">-</time>
+                                        by <span><a href="/u/<%= post.username %>"><%= post.username %></a></span> -->
+                                <!-- from <span><a href="/r/<%= post.subreddit %>">/r/<%= post.subreddit %></a></span> -->
+                            </div>
+                            <ul>
+                                <!-- <li><a href="/r/<%=post.subreddit %>/<%= post._id %>">comments</a></li> -->
+                                <!-- <li><a href="javascript:void(0)" class="save-post auth-req">save</a></li> -->
+                                <% if(post.username == locals.user) { %>
+                                <li><a href="javascript:void(0)" class="delete-post auth-req">delete</a></li>
+                                <% } %>
+
+                            </ul>
+                        </div>
+                    </article>
+                    <% });%>
+                    <% } else { %>
+                    <h4>Results (0)</h4>
+                    There are no posts.
+                    <% } %>
+                </div>
+            </div>
         </div>
+
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
