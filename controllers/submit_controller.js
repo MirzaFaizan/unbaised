@@ -114,6 +114,7 @@ exports.subreddit_link = function (req, res) {
         type = "img"
     }
 
+    console.log(req.body);
     Post({
         title: req.body.title,
         body: req.body.body,
@@ -228,13 +229,14 @@ exports.front_link = function (req, res) {
     if (checkURL(req.body.link)) {
         type = "img"
     }
-
+    const imgurl = `/images/${req.body.image}`;
     Post({
         title: req.body.title,
         link: req.body.link,
         username: req.session.user,
         subreddit: req.body.subreddit,
-        type: type
+        type: type,
+        image:imgurl
     }).save(function (err, doc) {
         if (err) throw err;
 

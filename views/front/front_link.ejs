@@ -29,7 +29,26 @@
                         <input type="text" class="form-control" name="link" placeholder="Enter link..." required><br>
                         <input type="hidden" class="form-control" name="subreddit" id="subreddit_form"
                             placeholder="Enter subbeddit" value="gaming" required>
-                        <!-- <div class="invalid-feedback">That subbeddit doesn't exist!</div><br> -->
+                        <select name="image" id="image" class="custom-select mb-3" required>
+                            <option value="Nytimes.png">New York Times</option>
+                            <option value="Washington.png">Washington Post</option>
+                            <option value="Usa.png">USA Today</option>
+                            <option value="Wsj.png">Wall Street Journal</option>
+                            <option value="Latimes.png">Los Angeles Times</option>
+                            <option value="Nypost.png">New York Post</option>
+                            <option value="Boston.png">The Boston Globe</option>
+                            <option value="Sfc.png">San Francisco Chronicle</option>
+                            <option value="Chicago.png">The Chicago Tribune</option>
+                            <option value="Msnbc.png">MSNBC</option>
+                            <option value="Cnn.png">CNN</option>
+                            <option value="Fox.png">Fox News</option>
+                            <option value="Abc.png">ABC News</option>
+                            <option value="Cbs.png">CBS News</option>
+                            <option value="Reuters.png">Reuters</option>
+                            <option value="Yahoo.png">Yahoo News</option>
+                            <option value="Google.png">Google News</option>
+                            <option value="other.png">Others</option>
+                        </select>
                         <button type="submit" class="btn bg-navy text-white auth-req"
                             id="link-submit-button">Submit</button>
                     </form>

@@ -9,6 +9,7 @@ const postSchema = new mongoose.Schema({
     type: Date,
     default: Date.now()
   },
+  image: String,
   type: String,
   link: String,
   upvotes: {

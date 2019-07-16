@@ -65,7 +65,7 @@
                                                 class="thumbnail"></a>
                                         <% } else if (post.type == "link") { %>
                                         <a style="font-size:1rem;" href="<%= post.link %>" target="_blank"><img
-                                                src="/images/post.png" height="55" width="55" class="thumbnail"></a>
+                                                src="<%= post.image %>" height="55" width="55" class="thumbnail"></a>
                                         <% } else { %>
                                         <a style="font-size:1rem;" href="/r/<%= post.subreddit %>/<%= post._id %>"><img
                                                 src="/images/post.png" height="55" width="55" class="thumbnail"></a>
