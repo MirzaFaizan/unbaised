@@ -68,6 +68,10 @@
     width: 100px;
     align-items: flex-end;
   }
+  video {
+    height: auto;
+    width: 300px !important;
+  }
 }
 
 .test {
@@ -76,6 +80,10 @@
 
 .has-search .form-control {
   padding-left: 2.375rem;
+}
+video {
+  height: auto;
+  width: 400px;
 }
 
 .has-search .form-control-feedback {
