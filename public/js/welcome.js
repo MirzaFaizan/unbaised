@@ -8,7 +8,6 @@ $('document').ready(function() {
     //   button: 'View Articles'
     // });
     Swal.fire({
-      title: '<strong class="display-4">Unbiased</strong>',
       html: ` <video src="/js/welcome.mp4" onloadedmetadata="this.muted = true" playsinline autoplay muted controls></video>`,
       showCloseButton: true,
       showCancelButton: true

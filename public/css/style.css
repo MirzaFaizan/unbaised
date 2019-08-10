@@ -70,7 +70,7 @@
   }
   video {
     height: auto;
-    width: 300px !important;
+    width: 260px !important;
   }
 }
 
@@ -83,7 +83,7 @@
 }
 video {
   height: auto;
-  width: 400px;
+  width: 350px;
 }
 
 .has-search .form-control-feedback {
