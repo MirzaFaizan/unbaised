@@ -1,5 +1,5 @@
 $('document').ready(function() {
-  if (localStorage.getItem('firstTime')) {
+  if (!sessionStorage.getItem('firstTime')) {
     // swal({
     //   title: 'For the People By the People!',
     //   text:
@@ -12,6 +12,6 @@ $('document').ready(function() {
       showCloseButton: true,
       showCancelButton: true
     });
-    localStorage.setItem('firstTime', 'done');
+    sessionStorage.setItem('firstTime', 'done');
   }
 });

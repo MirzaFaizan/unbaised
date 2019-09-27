@@ -1,69 +1,109 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <title>Unbiased - Register</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-    <link rel="stylesheet" type="text/css" href="/css/auth.css">
-    <link rel="stylesheet" href="/css/style.css">
-</head>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+    />
+    <link rel="stylesheet" type="text/css" href="/css/auth.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="icon" type="image/png" href="/images/unbiased.png" />
+  </head>
 
-<!-- <nav class="navbar navbar-dark bg-navy">
+  <!-- <nav class="navbar navbar-dark bg-navy">
     <a class="navbar-brand" href="/">
         <img src="/images/icon.png" class="d-inline-block align-top" style="width:200px">
     </a>
 </nav> -->
 
-
-<body>
+  <body>
     <div class="container-fluid text-center">
-
-        <div class="row">
-            <div
-                class="col-md-5 sticky-top bg-navy custom-nav d-flex flex-column justify-content-center align-items-center">
-                <div class="nav">
-                    <a class="navbar-brand" href="/">
-                        <img src="/images/icon.png" class="d-inline-block align-top rotate">
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-7 d-flex justify-content-center align-items-center">
-                <div id="container">
-                    <% if (message != undefined) { %>
-                    <div class="alert alert-primary text-center" role="alert">
-                        <%= message %>
-                    </div>
-                    <% } %>
-                    <div class="card text-center">
-                        <h5 class="card-header">Register</h5>
-                        <div class="card-body">
-                            <img src="images/default.png" height="134" width="134"><br><br>
-                            <form action="/register" method="post">
-                                <div class="input-group">
-                                    <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1"><i
-                                                class="fas fa-user"></i></span></div>
-                                    <input class="form-control" name="username" type="text" placeholder="Username"
-                                        required maxlength="30">
-                                </div><br>
-                                <div class="input-group">
-                                    <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1"><i
-                                                class="fas fa-lock"></i></span></div>
-                                    <input class="form-control" name="password" type="password" placeholder="Password"
-                                        required maxlength="30">
-                                </div><br>
-                                <button class="btn bg-navy text-white" type="submit" style="width:100%;">Enter</button>
-                                <span class="text-dark" id="lower">Already a member? <a href="/login"
-                                        class="text-dark">Sign in</a></span>
-                            </form>
-                        </div>
-                    </div>
-                    <a href="/" class="text-center text-dark">Continue Without Signing In.</a>
-                </div>
-            </div>
+      <div class="row">
+        <div
+          class="col-md-5 sticky-top shadow custom-nav d-flex flex-column justify-content-center align-items-center"
+        >
+          <div class="nav">
+            <a class="navbar-brand" href="/">
+              <img
+                src="/images/icon.png"
+                class="d-inline-block align-top rotate"
+              />
+            </a>
+          </div>
         </div>
-
+        <div class="col-md-7 d-flex justify-content-center align-items-center">
+          <div id="container">
+            <% if (message != undefined) { %>
+            <div class="alert alert-primary text-center" role="alert">
+              <%= message %>
+            </div>
+            <% } %>
+            <div class="card text-center">
+              <h5 class="card-header">Register</h5>
+              <div class="card-body">
+                <img
+                  src="images/default.png"
+                  height="134"
+                  width="134"
+                /><br /><br />
+                <form action="/register" method="post">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"
+                        ><i class="fas fa-user"></i
+                      ></span>
+                    </div>
+                    <input
+                      class="form-control"
+                      name="username"
+                      type="text"
+                      placeholder="Username"
+                      required
+                      maxlength="30"
+                    />
+                  </div>
+                  <br />
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"
+                        ><i class="fas fa-lock"></i
+                      ></span>
+                    </div>
+                    <input
+                      class="form-control"
+                      name="password"
+                      type="password"
+                      placeholder="Password"
+                      required
+                      maxlength="30"
+                    />
+                  </div>
+                  <br />
+                  <button
+                    class="btn bg-navy text-white"
+                    type="submit"
+                    style="width:100%;"
+                  >
+                    Enter
+                  </button>
+                  <span class="text-dark" id="lower"
+                    >Already a member?
+                    <a href="/login" class="text-dark">Sign in</a></span
+                  >
+                </form>
+              </div>
+            </div>
+            <a href="/" class="text-center text-dark"
+              >Continue Without Signing In.</a
+            >
+          </div>
+        </div>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>

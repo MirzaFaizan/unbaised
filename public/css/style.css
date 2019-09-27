@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
+
+* {
+  font-family: 'Nunito', sans-serif;
+}
+
 #auth {
   display: none;
 }
@@ -40,8 +46,8 @@
 }
 
 .rotate {
-  width: 200px;
-  transform: rotate(-91deg);
+  width: 300px;
+  /* transform: rotate(-91deg); */
 }
 
 @media screen and (max-width: 600px) {
@@ -104,7 +110,7 @@ video {
   }
   .rotate {
     all: unset;
-    width: 100px;
+    width: 200px;
     align-items: flex-end;
   }
 }

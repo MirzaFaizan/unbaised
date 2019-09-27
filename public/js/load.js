@@ -1,12 +1,12 @@
-$('article').ready(function() {
+$('article').ready(function () {
   // if the user is authenticated, load the users comment states and post states
   if ($('#auth').text() == 'true') {
     //load the users posts states which include vote state and save state
     $.ajax({
       type: 'get',
       url: `/check/states/posts/`
-    }).done(function(data) {
-      $('.post').each(function(index) {
+    }).done(function (data) {
+      $('.post').each(function (index) {
         for (let ele of data) {
           if (ele.ref == $(this).data('ref')) {
             if (ele.vote == 'up') {
@@ -22,6 +22,16 @@ $('article').ready(function() {
                 .find('.fa-chevron-up')
                 .addClass('up-enabled');
             }
+            else if (ele.vote == 'up-slight') {
+              $(this)
+                .find('.fa-chevron-circle-right')
+                .addClass('red');
+            }
+            else if (ele.vote == 'down-slight') {
+              $(this)
+                .find('.fa-chevron-circle-left')
+                .addClass('down-enabled');
+            }
             if (ele.saved == true) {
               $(this)
                 .find('.save-post')
@@ -35,8 +45,8 @@ $('article').ready(function() {
     $.ajax({
       type: 'get',
       url: `/check/states/comments/`
-    }).done(function(data) {
-      $('.comment').each(function(index) {
+    }).done(function (data) {
+      $('.comment').each(function (index) {
         for (let ele of data) {
           if (ele.ref == $(this).data('ref')) {
             if (ele.vote == 'up') {
