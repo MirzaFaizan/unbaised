@@ -24,6 +24,14 @@ const postSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
+  slightdownvotes: {
+    type: Number,
+    default: 0
+  },
+  slightupvotes: {
+    type: Number,
+    default: 0
+  },
   num_of_comments: {
     type: Number,
     default: 0

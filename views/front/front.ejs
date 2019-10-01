@@ -1,22 +1,22 @@
 <!doctype html>
 <html lang="en">
+<link rel="icon" type="image/png" href="/images/unbiased.png" />
 <%- include('../partials/head', {title: "Unbiased - Frontpage"}) %>
 <!-- <%- include('../partials/nav', {user: locals.user, karma}) %> -->
 
 <body>
     <span id="auth"><%= isAuth %></span>
 
+    <div class=" bg-transparent shadow  ">
+        <div class="nav container">
+            <a class="navbar-brand" href="/">
+                <img src="/images/icon.png" class="d-inline-block align-top rotate">
+            </a>
+        </div>
+    </div>
     <div class="container-fluid">
         <div class="row">
 
-            <div
-                class="col-md-1 sticky-top bg-navy custom-nav d-flex flex-column justify-content-center align-items-center">
-                <div class="nav ">
-                    <a class="navbar-brand" href="/">
-                        <img src="/images/icon.png" class="d-inline-block align-top rotate">
-                    </a>
-                </div>
-            </div>
             <div class="main col-md-11">
                 <%- include('../partials/jumbotron', {subtitle:"Articles posted by users. Articles voted on by users.",name: "Articles"}) %>
                 <hr>
@@ -75,19 +75,32 @@
                                             <i class="fas fa-chevron-left text-center"></i>
                                             <span class="downpost-votes text-center font-weight-bold"
                                                 data-ref="<%= post._id %>"><%= post.downvotes %></span>
-                                            <h6 class="font-weight-light">Swing<br>Left</h6>
+                                            <small class="font-weight-bold ml-2">Strong <br>Left</small>
+                                        </div>
+                                        <div class="slightdownvote-post auth-req d-flex flex-column">
+                                            <i class="fas fa-chevron-circle-left text-center"></i>
+                                            <span class="slight-post-downvotes text-center font-weight-bold"
+                                                data-ref="<%= post._id %>"><%= post.slightdownvotes %></span>
+                                            <small class="font-weight-bold ml-2">Slight<br>Left</small>
                                         </div>
                                         <div class="neutralvote-post auth-req d-flex flex-column">
                                             <i class="fas fa-chevron-up text-center"></i>
                                             <span class="neutralpost-votes text-center font-weight-bold"
                                                 data-ref="<%= post._id %>"><%= post.neutralvotes %></span>
-                                            <h6 class="font-weight-light">Neutral</h6>
+                                            <small class="font-weight-bold ml-2">Neutral</small>
                                         </div>
+                                        <div class="slightupvote-post auth-req d-flex flex-column">
+                                            <i class="fa fa-chevron-circle-right upvote-slight-arrow text-center"></i>
+                                            <span class="slight-post-upvotes text-center font-weight-bold"
+                                                data-ref="<%= post._id %>"><%= post.slightupvotes %></span>
+                                            <small class="font-weight-bold ml-2">Slight<br>Right</small>
+                                        </div>
+
                                         <div class="upvote-post auth-req d-flex flex-column">
                                             <i class="fas fa-chevron-right text-center"></i>
                                             <span class="upvote-post-votes text-center font-weight-bold"
                                                 data-ref="<%= post._id %>"><%= post.upvotes %></span>
-                                            <h6 class="font-weight-light">Swing<br>Right</h6>
+                                            <small class="font-weight-bold ml-2">Strong<br>Right</small>
                                         </div>
                                     </div>
                                 </div>

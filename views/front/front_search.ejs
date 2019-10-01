@@ -1,55 +1,53 @@
 <!doctype html>
 <html lang="en">
+<link rel="icon" type="image/png" href="/images/unbiased.png" />
 <%- include('../partials/head', {title: "Unbiased - Search"}) %>
 
 <body>
-    <span id="auth"><%= isAuth %></span>
-
-    <div class="container-fluid">
-        <div class="row">
-
-            <div
-                class="col-md-1 sticky-top bg-navy custom-nav d-flex flex-column justify-content-center align-items-center">
-                <div class="nav">
-                    <a class="navbar-brand" href="/">
-                        <img src="/images/icon.png" class="d-inline-block align-top rotate">
-                    </a>
-                </div>
+  <span id="auth"><%= isAuth %></span>
+  <div class="bg-transparent shadow">
+    <div class="nav container">
+      <a class="navbar-brand" href="/">
+        <img src="/images/icon.png" class="d-inline-block align-top rotate">
+      </a>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-11">
+        <%- include('../partials/jumbotron', {subtitle:"Search articles posted by other users.",name: "Search"}) %>
+        <div class="container">
+          <form id="form-search" action="/search/" method="post">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" name="query" placeholder="Find a post" value="<%= query %>"
+                required>
+              <div class="input-group-append">
+                <button class="btn bg-navy text-light submit" type="submit">Search</button>
+              </div>
             </div>
-            <div class="col-md-11">
-                <%- include('../partials/jumbotron', {subtitle:"Search articles posted by other users.",name: "Search"}) %>
-                <div class="container">
-                    <form id="form-search" action="/search/" method="post">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" name="query" placeholder="Find a post"
-                                value="<%= query %>" required>
-                            <div class="input-group-append">
-                                <button class="btn bg-navy text-light submit" type="submit">Search</button>
-                            </div>
-                        </div>
-                    </form>
+          </form>
 
-                    <!-- <a class="btn btn-block btn-light auth-req" href="/submit/subreddit" id="create-subreddit">Create
+          <!-- <a class="btn btn-block btn-light auth-req" href="/submit/subreddit" id="create-subreddit">Create
                                 subbeddit</a><br> -->
 
-                    <%- include('../partials/sidebar_index_subscribed', {isAuth, subscribed}) %>
-                </div>
+          <%- include('../partials/sidebar_index_subscribed', {isAuth, subscribed}) %>
+        </div>
 
-                <div class="container">
-                    <% if (posts != undefined) { %>
-                    <h4>Results (<%= posts.length %>)</h4>
-                    <% } %>
+        <div class="container">
+          <% if (posts != undefined) { %>
+          <h4>Results (<%= posts.length %>)</h4>
+          <% } %>
 
-                    <% if (posts != undefined) { 
+          <% if (posts != undefined) { 
                                     posts.forEach((post) => { %>
-                    <article class="post" data-ref="<%= post._id %>">
-                        <!-- <div class="arrows">
+          <article class="post" data-ref="<%= post._id %>">
+            <!-- <div class="arrows">
                                     <div class="upvote-post auth-req"><i class="far fa-caret-square-up"></i></div>
                                     <span class="post-votes" data-ref="<%= post._id %>"><%= post.votes %></span>
                                     <div class="downvote-post auth-req"><i class="far fa-caret-square-down"></i></div>
                                 </div> -->
 
-                        <!-- <% if(post.type == "img") { %>
+            <!-- <% if(post.type == "img") { %>
                                 <a href="<%= post.link %>"><img src="<%=post.link%>" height="55" width="55" class="thumbnail"></a>
                                 <% } else if (post.type == "link") { %>
                                 <a href="<%= post.link %>"><img src="/images/link.png" height="55" width="55" class="thumbnail"></a>
@@ -58,51 +56,50 @@
                                         class="thumbnail"></a>
                                 <% } %> -->
 
-                        <div class="info">
-                            <header>
-                                <% if(post.type == "post") { %>
-                                <a href="/r/<%= post.subreddit %>/<%= post._id %>"><%= post.title %></a>
-                                <%  } else { %>
-                                <a target="_blank" class="text-dark font-weight-bold"
-                                    href="<%= post.link %>"><%= post.title %></a>
-                                <% } %>
+            <div class="info">
+              <header>
+                <% if(post.type == "post") { %>
+                <a href="/r/<%= post.subreddit %>/<%= post._id %>"><%= post.title %></a>
+                <%  } else { %>
+                <a target="_blank" class="text-dark font-weight-bold" href="<%= post.link %>"><%= post.title %></a>
+                <% } %>
 
-                            </header>
-                            <div>
-                                <!-- submitted <time title="<%= post.time %>">-</time>
+              </header>
+              <div>
+                <!-- submitted <time title="<%= post.time %>">-</time>
                                         by <span><a href="/u/<%= post.username %>"><%= post.username %></a></span> -->
-                                <!-- from <span><a href="/r/<%= post.subreddit %>">/r/<%= post.subreddit %></a></span> -->
-                            </div>
-                            <ul>
-                                <!-- <li><a href="/r/<%=post.subreddit %>/<%= post._id %>">comments</a></li> -->
-                                <!-- <li><a href="javascript:void(0)" class="save-post auth-req">save</a></li> -->
-                                <% if(post.username == locals.user) { %>
-                                <li><a href="javascript:void(0)" class="delete-post auth-req">delete</a></li>
-                                <% } %>
+                <!-- from <span><a href="/r/<%= post.subreddit %>">/r/<%= post.subreddit %></a></span> -->
+              </div>
+              <ul>
+                <!-- <li><a href="/r/<%=post.subreddit %>/<%= post._id %>">comments</a></li> -->
+                <!-- <li><a href="javascript:void(0)" class="save-post auth-req">save</a></li> -->
+                <% if(post.username == locals.user) { %>
+                <li><a href="javascript:void(0)" class="delete-post auth-req">delete</a></li>
+                <% } %>
 
-                            </ul>
-                        </div>
-                    </article>
-                    <% });%>
-                    <% } else { %>
-                    <h4>Results (0)</h4>
-                    There are no posts.
-                    <% } %>
-                </div>
+              </ul>
             </div>
+          </article>
+          <% });%>
+          <% } else { %>
+          <h4>Results (0)</h4>
+          There are no posts.
+          <% } %>
         </div>
-
+      </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/autosize@4.0.2/dist/autosize.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    <script src="/js/load.js"></script>
-    <script src="/js/index.js"></script>
-    <script src="/js/post.js"></script>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/autosize@4.0.2/dist/autosize.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  <script src="/js/load.js"></script>
+  <script src="/js/index.js"></script>
+  <script src="/js/post.js"></script>
 
 </body>
 
