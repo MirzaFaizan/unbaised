@@ -4,20 +4,19 @@
 
 <body>
     <span id="auth"><%= isAuth %></span>
-
+    <div class=" bg-transparent shadow  ">
+        <div class="nav container">
+            <a class="navbar-brand" href="/">
+                <img src="/images/icon.png" class="d-inline-block align-top rotate">
+            </a>
+        </div>
+    </div>
     <div class="container-fluid text-center">
         <div class="row">
-            <div
-                class="col-md-1 sticky-top bg-navy custom-nav d-flex flex-column justify-content-center align-items-center">
-                <div class="nav ">
-                    <a class="navbar-brand" href="/">
-                        <img src="/images/icon.png" class="d-inline-block align-top rotate">
-                    </a>
-                </div>
-            </div>
 
-            <div class="main col-md-11">
+            <div class="main col-md-10">
                 <%- include('../partials/jumbotron', {name: profile_user,subtitle:"View your Post here."}) %>
+                <hr />
                 <img id="profile-pic" src="/images/default.png" height="134" width="134"><br>
                 <div id="profile-info">
                     <!-- Karma: <span class="karma"><%=karma%></span> -->
@@ -25,7 +24,7 @@
                 </div>
                 <% if (posts != undefined) { 
                     posts.forEach((post) => { %>
-                <article class="post shadow-lg col-md-11 mt-2" data-ref="<%= post._id %>">
+                <article class="post shadow col-md-11 mt-3" data-ref="<%= post._id %>">
                     <!-- <div class="arrows">
                         <div class="upvote-post auth-req"><i class="far fa-caret-square-up"></i></div>
                         <span class="post-votes" data-ref="<%= post._id %>"><%= post.votes %></span>
@@ -54,7 +53,7 @@
                         </header>
                         <div>
                             <!-- Submitted <time title="<%= post.time %>">-</time> -->
-                            Submitted by <span class="post-user"><a
+                            Submitted by <span class="post-user text-capitalize"><a
                                     href="/u/<%= post.username %>"><%= post.username%></a></span>
                             <!-- from <span><a href="/r/<%= post.subreddit %>">/r/<%= post.subreddit %></a></span> -->
                         </div>

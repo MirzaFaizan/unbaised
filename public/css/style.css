@@ -8,17 +8,6 @@
   display: none;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 .bg-navy {
   background-color: #1400ff;
 }
@@ -72,43 +61,18 @@
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @media screen and (max-width: 411px) {
   article {
     font-size: 13px;
   }
-  
-  .col{
-  padding-left:0 !important;
-  padding-right: 0 !important;
+
+  .col {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 
-
-
   .col-md-5 {
-    padding-left:0px !important;
+    padding-left: 0px !important;
     padding-right: 0px !important;
   }
 
@@ -120,7 +84,7 @@
     margin-right: 0 !important;
   }
   .container {
-    padding:0 !important;
+    padding: 0 !important;
   }
   .rotate {
     all: unset;
