@@ -16,16 +16,15 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-
-            <div class="main col-md-11">
+            <div class="main col-md-12">
                 <%- include('../partials/jumbotron', {subtitle:"Articles posted by users. Articles voted on by users.",name: "Articles"}) %>
                 <hr>
                 <div class="col-md-12">
                     <%- include('../partials/sidebar_index_actions.ejs') %>
                 </div>
 
-                <div class="container d-flex justify-content-around">
-                    <div class="col-md-12">
+                <div class="container-fluid d-flex ">
+                    <div class="col-md-10">
                         <div class="row">
                             <% if (posts != undefined) { 
                                             posts.forEach((post) => { %>
@@ -62,14 +61,14 @@
                                 <div class="arrows col-md-12 d-flex flex-column justify-content-between ">
                                     <div class="vote-count col-md-12 d-flex justify-content-between">
                                         <% if(post.type == "img") { %>
-                                        <a href="<%= post.link %>"><img src="<%=post.link%>" height="55" width="55"
+                                        <a href="<%= post.link %>"><img src="<%=post.link%>" height="40" width="55"
                                                 class="thumbnail"></a>
                                         <% } else if (post.type == "link") { %>
                                         <a style="font-size:1rem;" href="<%= post.link %>" target="_blank"><img
-                                                src="<%= post.image %>" height="55" width="55" class="thumbnail"></a>
+                                                src="<%= post.image %>" height="40" width="40" class="thumbnail"></a>
                                         <% } else { %>
                                         <a style="font-size:1rem;" href="/r/<%= post.subreddit %>/<%= post._id %>"><img
-                                                src="/images/post.png" height="55" width="55" class="thumbnail"></a>
+                                                src="/images/post.png" height="40" width="40" class="thumbnail"></a>
                                         <% } %>
                                         <div class="downvote-post auth-req d-flex flex-column">
                                             <i class="fas fa-chevron-left text-center"></i>
@@ -113,10 +112,13 @@
                             <% } %>
                         </div>
                     </div>
-
+                    <div class="col-md-2">
+                        <iframe class="iframe"
+                            src="http://www.urldelivery.com/watchnew?key=ba5ec8d8ae63098b6cb367cdbf39871e"
+                            frameborder="0" height="600" width="160" scrolling="no"></iframe>
+                    </div>
                 </div>
             </div>
-
         </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

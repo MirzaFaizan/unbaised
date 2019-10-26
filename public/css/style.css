@@ -66,6 +66,10 @@
     font-size: 13px;
   }
 
+  .iframe {
+    display:none !important;
+  }
+
   .col {
     padding-left: 0 !important;
     padding-right: 0 !important;
